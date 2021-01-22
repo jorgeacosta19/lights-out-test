@@ -3,111 +3,99 @@ import './Grid.css';
 import '../App'
 
 
-//creo el estado original
+
+
 class Grid extends Component {
  constructor(props){
       super(props);
-      this.state={lightOn:true } //la luz encendida por default es true
-  } 
-
-  //Modifico el estado
+      this.state={lightOn:Math.round(Math.random())} 
+  
+    } 
    toggleLight=()=>{
-    let cellStatus=this.state.lightOn; 
-    console.log(cellStatus);  //para ver el satatus true or false
-
-    
+    (this.setState({lightOn:!this.state.lightOn}
+        )
+    )
     this.setState((state,props)=>
-        this.props.id<=2?
-        ({lightOn:!(this).state.lightOn}):
-        ({lightOn:this.state.lightOn})
-        ) //aqui cambio el estado de la luz (el toggle),si esta encendida se apaga y viceverza 
+    {
+    const currentCell=parseFloat(this.props.id);
+    const leftCell=parseFloat(this.props.id-1);
+    const rightCell=parseFloat(this.props.id)+1;
+    const topCell=parseFloat(this.props.id)-5;
+    const bottomCell=parseFloat(this.props.id)+5;
 
-    console.log(cellStatus); //solo para ver
-    let stringId = this.props.id
-    let cellId= parseFloat(stringId); //convierto el id de la posicion en entero para moverme hacia las otras posiciones
+        switch (true){
+            case (currentCell<=4):
+                
+                console.log(`light ${currentCell} changed state`);
+                console.log(`light ${leftCell} changed state`);
+                console.log(`light ${rightCell} changed state`);
+                console.log(`light ${topCell} changed state`);
+                console.log(`light ${bottomCell} changed state`);
+                
+            break;
+        
+            case  (currentCell>=7 && currentCell<=9):
+                        console.log(`light ${currentCell} changed state`);
+                        console.log(`light ${leftCell} changed state`);
+                        console.log(`light ${rightCell} changed state`);
+                        console.log(`light ${topCell} changed state`);
+                        console.log(`light ${bottomCell} changed state`);
+                    break;
+                    case  (currentCell>=12 && currentCell<=14):
+                        console.log(`light ${currentCell} changed state`);
+                        console.log(`light ${leftCell} changed state`);
+                        console.log(`light ${rightCell} changed state`);
+                        console.log(`light ${topCell} changed state`);
+                        console.log(`light ${bottomCell} changed state`);
+                    break;
+                    case  (currentCell>=17 && currentCell<=19):
+                        console.log(`light ${currentCell} changed state`);
+                        console.log(`light ${leftCell} changed state`);
+                        console.log(`light ${rightCell} changed state`);
+                        console.log(`light ${topCell} changed state`);
+                        console.log(`light ${bottomCell} changed state`);
+                    break;
+                    case  (currentCell>=22 && currentCell<=25):
+                        console.log(`light ${currentCell} changed state`);
+                        console.log(`light ${leftCell} changed state`);
+                        console.log(`light ${rightCell} changed state`);
+                        console.log(`light ${topCell} changed state`);
+                        console.log(`light ${bottomCell} changed state`);
+                    break;
+                    case (currentCell===6 || currentCell===11 || currentCell===16 || currentCell===21):
+                        console.log(`light ${currentCell} changed state`);   
+                        console.log(`light ${rightCell} changed state`);
+                        console.log(`light ${topCell} changed state`);
+                        console.log(`light ${bottomCell} changed state`);
+            
+                    break;
+                    default:
+                        console.log(`light ${currentCell} changed state`);   
+                        console.log(`light ${leftCell} changed state`);
+                        console.log(`light ${topCell} changed state`);
+                        console.log(`light ${bottomCell} changed state`);
+            
+                    break;
+        }
     
-    //adjacent lights
-    let currentCell= stringId;
-    let leftCell=(cellId-1).toString();
-    let rightCell=(cellId+1).toString();
-    let topCell=(cellId-5).toString();
-    let bottomCell=(cellId+5).toString();
-  
-    
-    switch (true){
-        case (cellId<=4):
-       
-            console.log(`light ${currentCell} changed state`);
-            console.log(`light ${leftCell} changed state`);
-            console.log(`light ${rightCell} changed state`);
-            console.log(`light ${topCell} changed state`);
-            console.log(`light ${bottomCell} changed state`);
-        break;
-        case  (cellId>=7 && cellId<=9):
-            console.log(`light ${currentCell} changed state`);
-            console.log(`light ${leftCell} changed state`);
-            console.log(`light ${rightCell} changed state`);
-            console.log(`light ${topCell} changed state`);
-            console.log(`light ${bottomCell} changed state`);
-        break;
-        case  (cellId>=12 && cellId<=14):
-            console.log(`light ${currentCell} changed state`);
-            console.log(`light ${leftCell} changed state`);
-            console.log(`light ${rightCell} changed state`);
-            console.log(`light ${topCell} changed state`);
-            console.log(`light ${bottomCell} changed state`);
-        break;
-        case  (cellId>=17 && cellId<=19):
-            console.log(`light ${currentCell} changed state`);
-            console.log(`light ${leftCell} changed state`);
-            console.log(`light ${rightCell} changed state`);
-            console.log(`light ${topCell} changed state`);
-            console.log(`light ${bottomCell} changed state`);
-        break;
-        case  (cellId>=22 && cellId<=25):
-            console.log(`light ${currentCell} changed state`);
-            console.log(`light ${leftCell} changed state`);
-            console.log(`light ${rightCell} changed state`);
-            console.log(`light ${topCell} changed state`);
-            console.log(`light ${bottomCell} changed state`);
-        break;
-        case (cellId===6 || cellId===11 || cellId===16 || cellId===21):
-            console.log(`light ${currentCell} changed state`);   
-            console.log(`light ${rightCell} changed state`);
-            console.log(`light ${topCell} changed state`);
-            console.log(`light ${bottomCell} changed state`);
-
-        break;
-        default:
-            console.log(`light ${currentCell} changed state`);   
-            console.log(`light ${leftCell} changed state`);
-            console.log(`light ${topCell} changed state`);
-            console.log(`light ${bottomCell} changed state`);
-
-        break;
-    }
+       }
+    ); 
 }
-
-  
 
     render() {
         
         return(
             
         <div >
-            
-            <button className={this.state.lightOn 
+            <button id={this.props.id} className={this.state.lightOn 
             ? "on" 
             : "off"}
             
-    //cuando ocurre el metodo onClick se llama a la funcion que hace toggle
-            onClick={this.toggleLight} >{this.props.id}
-            
-                
+            onClick={this.toggleLight} >
+             
             </button>    
-                
+            
        </div>
-       
        
         );
        

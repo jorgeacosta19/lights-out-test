@@ -33,8 +33,8 @@ function App(){
       <Grid id="23"/>
       <Grid id="24"/>
       <Grid id="25"/>
-
       </div>
+      
      </div>
   )
 }
